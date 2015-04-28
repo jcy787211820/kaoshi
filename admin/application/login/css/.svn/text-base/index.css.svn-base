@@ -1,0 +1,9 @@
+body {
+  background: #278296;
+}
+.white{
+	color:white;
+}
+.capital{
+    text-transform: uppercase;
+}

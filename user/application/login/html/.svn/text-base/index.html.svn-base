@@ -1,0 +1,46 @@
+<!-- http://themeforest.net/category/muse-templates -->
+<div class="layout-header">
+	<div class="site-title">考试网</div>
+	<div class="site-sub-title">帐号</div>
+	<div class="join-query">没有考试网帐号? <a class="button" href="/join">立即注册</a></div>
+</div>
+<div class="layout-content">
+	<div class="message-info">
+		<h1>考试网作用</h1>
+		<p>1、考试网有主要有两种会员类型(出考题的人和解答题目的人)。出题目可以获得相应报酬，解答题目可以获得实用的知识。</p>
+		<p>2、试题练习，和试卷考试。你可以通过解题，复习和学习知识。</p>
+		<p>3、发布试题和试卷。你可以将你所了解的知识传授给他人，并从中获取收入。</p>
+		<p>说明:目前的网站测试中，普通会员暂时不能发布试题和试卷。</p>
+		<p>学习使人进步，知识改变命运。</p>	
+	</div>
+	<div class="login-form">
+		<form name="loginForm" id="loginForm" action="/login/action" method="post" autocomplete="off" onsubmit="return doSubmit();">
+			<input type="hidden" name="http_reffrer" id="http_reffrer" value="<?=@$_SERVER['HTTP_REFERER']?>" />
+			<h1>登陆<span>Sign in</span></h1>
+			<div id="error_message" class="error_message"></div>
+			<div>
+				<label for="user_id">请输入用户Id</label>
+				<input type="text" name="user_id" id="user_id" class="input" onfocus="focusIn(this)" onblur="focusOut(this)" onkeyup="focusWrite(this)" />
+			</div>
+			<div>
+				<label for="user_password">请输入密码</label>
+				<input type="password" name="user_password" id="user_password" class="input" onfocus="focusIn(this)" onblur="focusOut(this)" onkeyup="focusWrite(this)" />
+			</div>
+			<div>
+				<label for="captcha">
+					请输入验证码
+				</label>
+				<input type="text" name="captcha" class="input" id="captcha"  onfocus="focusIn(this)" onblur="focusOut(this)" onkeyup="focusWrite(this)" />
+				<span class="captcha_img">
+					<img width="50" height="30" src="/login/captcha" alt="验证码" />
+					<a href="javascript:void(0)" onclick="jQuery(this).prev('img').attr('src','/login/captcha/'+Math.random())" id="change_captcha">看不清</a>
+				</span>
+			</div>
+			<div><input type="submit" value="登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;陆" class="button" /></div>
+		</form>
+	</div>
+</div>
+<div class="space-bar"></div>
+<div class="layout-footer">
+	<span>Copyright © 2013 kaoshi.com</span>
+</div>

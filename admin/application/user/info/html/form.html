@@ -1,0 +1,169 @@
+<h1>
+	<span class="action-span"><a href="/user/info">用户列表</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 编辑用户信息 </span>
+	<div style="clear:both"></div>
+</h1>
+<!-- start add new category form -->
+<div class="main-div">
+	<form name="form_edit" id="form_edit" action="edit" method="post" onsubmit="return false;">
+		<input type="hidden" name="user_seq" value="<?=$user['user_seq']?>" />
+		<table id="general-table" width="100%">
+			<tbody>
+				<tr>
+					<td class="label"><font color="red">*</font><label>ID：</label></td>
+					<td><input type="text" name="user_id" value="<?=$user['user_id']?>"<?php if(!empty($user['user_id'])):?>readonly="readonly"/><?php endif;?></td>
+				</tr>
+			<?php if($user['user_seq'] == 0):?>				
+				<tr>
+					<td class="label"><font color="red">*</font><label>密码：</label></td>
+					<td><input type="password" name="user_password" value="" /></td>
+				</tr>
+			<?php endif;?>
+			<?php foreach($user_info_types AS $key => $user_info_type ):?>
+				<tr>
+					<td class="label">
+						<?php if( $user_info_type['is_must'] == TRUE ):?><font color="red">*</font><?php endif;?>
+						<label><?=$user_info_type['name']?>：</label>
+					</td>
+					<td>
+						<?php if( $key == $user_info_manager::USER_INFO_TYPE_GROUP ):?>
+							<?php if(isset($user_infos[$key])):?>
+								<?php foreach( $user_infos[$key] AS $user_info ):?>
+									<div class="js_user_group_div js_addable_tag">
+										<input type="hidden" name="def_user_group_code" value="<?=$user_info['user_info_value']?>" />
+										<input type="hidden" name="max_line" value="<?=$user_info_type['max_input_num']?>" />
+										<?php if( $user_info_type['max_input_num'] != 1 ):?>
+											<input type="button" name="add_btn" onclick="addTag(this)" value="+" />
+											<input type="button" name="del_btn" onclick="removeTag(this)" value="-" />
+										<?php endif;?>
+									</div>
+								<?php endforeach;?>
+							<?php else:?>
+								<div class="js_user_group_div js_addable_tag">
+									<input type="hidden" name="def_user_group_code" value="" />
+									<input type="hidden" name="max_line" value="<?=$user_info_type['max_input_num']?>" />
+									<?php if( $user_info_type['max_input_num'] != 1 ):?>
+										<input type="button" name="add_btn" onclick="addTag(this)" value="+" />
+										<input type="button" name="del_btn" onclick="removeTag(this)" value="-" />
+									<?php endif;?>
+								</div>
+							<?php endif;?>
+						<?php elseif( $key == $user_info_manager::USER_INFO_TYPE_AREA ):?>
+							<?php if(isset($user_infos[$key])):?>
+								<?php foreach( $user_infos[$key] AS $user_info ):?>
+									<div class="js_area_div js_addable_tag">
+										<input type="hidden" name="def_area_code" value="<?=$user_info['user_info_value']?>" />
+										<input type="hidden" name="max_line" value="<?=$user_info_type['max_input_num']?>" />
+										<?php if( $user_info_type['max_input_num'] != 1 ):?>
+											<input type="button" name="add_btn" onclick="addTag(this)" value="+" />
+											<input type="button" name="del_btn" onclick="removeTag(this)" value="-" />
+										<?php endif;?>
+									</div>
+								<?php endforeach;?>
+							<?php else:?>
+								<div class="js_area_div js_addable_tag">
+									<input type="hidden" name="def_area_code" value="0" />
+									<input type="hidden" name="max_line" value="<?=$user_info_type['max_input_num']?>" />
+									<?php if( $user_info_type['max_input_num'] != 1 ):?>
+										<input type="button" name="add_btn" onclick="addTag(this)" value="+" />
+										<input type="button" name="del_btn" onclick="removeTag(this)" value="-" />
+									<?php endif;?>
+								</div>
+							<?php endif;?>
+						<?php elseif( $key == $user_info_manager::USER_INFO_TYPE_SEX ):?>
+							<?php if(isset( $user_infos[$key] ) && $user_infos[$key][0]['user_info_value'] == '男'):?>
+								<input type="radio" name="user_info[<?=$key?>]" value="男" id="user_info_<?=$key?>_1" checked="checked" />
+								<label for="user_info_<?=$key?>_1">男</label>
+								<input type="radio" name="user_info[<?=$key?>]" value="女" id="user_info_<?=$key?>_2"/>
+								<label for="user_info_<?=$key?>_2">女</label>
+							<?php else:?>
+								<input type="radio" name="user_info[<?=$key?>]" value="男" id="user_info_<?=$key?>_1" />
+								<label for="user_info_<?=$key?>_1">男</label>
+								<input type="radio" name="user_info[<?=$key?>]" value="女" id="user_info_<?=$key?>_2" checked="checked" />
+								<label for="user_info_<?=$key?>_2">女</label>
+							<?php endif;?>
+						<?php elseif( $user_info_type['max_input_num'] == 1 ):?>
+							<?php if(isset($user_infos[$key])):?>
+								<input type="text" name="user_info[<?=$key?>]" value="<?=current($user_infos[$key])['user_info_value']?>" />
+							<?php else:?>
+								<input type="text" name="user_info[<?=$key?>]" value="" />
+							<?php endif;?>
+						<?php else:?>
+							<?php if(isset($user_infos[$key])):?>
+								<?php foreach( $user_infos[$key] AS $user_info ):?>
+									<div class="js_addable_tag">
+										<input type="hidden" name="max_line" value="<?=$user_info_type['max_input_num']?>" />
+										<input type="button" name="add_btn" onclick="addTag(this)" value="+" />
+										<input type="button" name="del_btn" onclick="removeTag(this)" value="-" />
+										<input type="text" name="user_info[<?=$key?>]" value="<?=$user_info['user_info_value']?>" />
+									</div>
+								<?php endforeach;?>
+							<?php else:?>
+								<div class="js_addable_tag">
+									<input type="hidden" name="max_line" value="<?=$user_info_type['max_input_num']?>" />
+									<input type="button" name="add_btn" onclick="addTag(this)" value="+" />
+									<input type="button" name="del_btn" onclick="removeTag(this)" value="-" />
+									<input type="text" name="user_info[<?=$key?>]" value="" />
+								</div>
+							<?php endif;?>
+						<?php endif;?>
+					</td>
+				</tr>
+			<?php endforeach;?>
+				<tr>
+					<td class="label"><label>积分：</label></td>
+					<td><?=$user['user_point']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>余额：</label></td>
+					<td><?=$user['user_cash']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>经验值：</label></td>
+					<td>解题人：<?=$user['user_empiric_a']?>/出题人：<?=$user['user_empiric_b']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>好友总数：</label></td>
+					<td><?=$user['user_friend_count']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>黑名单总数：</label></td>
+					<td><?=$user['user_blacklist_count']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>注册时间：</label></td>
+					<td><?=$user['user_insert_time_vm']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后登录时间：</label></td>
+					<td><?=$user['user_login_time_vm']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>是否激活：</label></td>
+					<td>
+						<input type="radio" name="user_active_flag" value="T" id="user_active_flag_T"<?php if($user['user_active_flag'] == 'T'):?> checked="checked"<?php endif;?> />
+						<label for="user_active_flag_T">是</label>
+						<input type="radio" name="user_active_flag" value="F" id="user_active_flag_F"<?php if($user['user_active_flag'] == 'F'):?> checked="checked"<?php endif;?> />
+						<label for="user_active_flag_F">否</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label>是否管理员添加：</label></td>
+					<td><?=$user['user_admin_add_flag']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改时间：</label></td>
+					<td><?=$user['user_edit_time_vm']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改人：</label></td>
+					<td><?=$user['user_edit_id']?></td>
+				</tr>				
+			</tbody>
+		</table>
+		<div class="button-div">
+			<input value="确定" type="button" onclick="doEdit()" class="button">
+			<input value="重置" type="reset" class="button">
+		</div>
+	</form>
+</div>

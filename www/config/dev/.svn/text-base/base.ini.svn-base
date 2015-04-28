@@ -1,0 +1,21 @@
+;Use for core
+LAYOUT_TYPE				= www
+LAYOUT_DIR				= /www/kaoshi/www/layout
+
+[application]
+APPLICATION_PATH		= /www/kaoshi/www/application
+
+[Manager PATH]
+MANAGER_PATH			= /www/kaoshi/manager
+
+[Plugin PATH]
+PLUGIN_PATH				= /www/kaoshi/plugin
+
+[traits PATH]
+TRAIT_PATH				= /www/kaoshi/traits
+
+[view]
+CACHE_DIR				= /www/kaoshiCompileHTML/
+
+[DOMAIN]
+USER_BASE_URI			= http://user.kaoshi.dev

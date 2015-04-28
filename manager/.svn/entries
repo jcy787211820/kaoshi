@@ -1,0 +1,156 @@
+10
+
+dir
+167
+svn://192.168.0.100/kaoshi/manager
+svn://192.168.0.100/kaoshi
+
+
+
+2014-04-10T11:12:38.889807Z
+167
+licy
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+a68a99ef-6aea-448f-90f3-0c8535482901
+
+__class(has log not use).php
+file
+
+
+
+
+2014-03-25T13:39:26.000000Z
+833a7dba51ddbf6d8c0c2b60bb269d84
+2014-03-29T07:22:13.421687Z
+164
+licy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11026
+
+__class.php
+file
+
+
+
+
+2014-03-29T06:32:21.000000Z
+ca74d00600b0ca71c90498283d91b660
+2014-03-29T07:22:13.421687Z
+164
+licy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7946
+
+area
+dir
+
+category
+dir
+
+categoryMapNews
+dir
+
+categoryMapStudyData
+dir
+
+categoryMapTest
+dir
+
+categoryMapTestPaper
+dir
+
+file
+dir
+
+log
+dir
+
+news
+dir
+
+permission
+dir
+
+session
+dir
+
+studyData
+dir
+
+test
+dir
+
+testPaper
+dir
+
+testPaperFile
+dir
+
+user
+dir
+
+userGroup
+dir
+
+userInfo
+dir
+
+userLevel
+dir
+
+writeExamApply
+dir
+

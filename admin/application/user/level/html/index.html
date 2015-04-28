@@ -1,0 +1,57 @@
+<h1>
+	<span class="action-span"><a href="/user/level/form">添加用户级别</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 用户级别列表 </span>
+	<div style="clear:both"></div>
+</h1>
+<div class="form-div">
+	<form action="/user/level/listed" name="search_form" id="search_form" method="get" onsubmit="return false">
+		<img src="/layout/images/icons/icon_search.gif" alt="SEARCH" border="0" height="22" width="26">
+		<input type="hidden" name="page" value="1" />
+		<input type="hidden" name="rows" value="15" />
+		<input type="hidden" name="size" value="10" />
+		<input type="hidden" name="total" value="0" />
+		<label for="user_level_name">用户级别名:</label>
+		<input type="text" name="user_level_name" id="user_level_name" />
+		<input type="submit" value="查询" />
+	</form>
+</div>
+
+<div class="list-div" id="listDiv">
+	<form action="/user/level/" name="edit_form" id="edit_form" method="post" onsubmit="return false;">
+		<table cellpadding="3" cellspacing="1">
+			<thead>
+				<tr>
+					<th width="20"><input type="checkbox" name="checkall" />序号</th>
+					<th width="80">类型</th>
+					<th width="150">名称</th>
+					<th width="50">使用</th>
+					<th width="*">说明</th>
+					<th width="100">经验值下限</th>
+					<th width="150">编辑时间</th>
+					<th width="100">编辑ID</th>
+					<th width="50">操作</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="3">
+						<div>
+							<select name="batch_action" id="batch_action">
+								<option value="delete">删除</option>
+								<option value="used">使用</option>
+								<option value="unused">禁用</option>
+							</select>
+							<input type="button" onclick="doBatchAction()" class="button" value="批量操作" />
+						</div>
+					</td>
+					<td colspan="7" align="right">
+						<div class="js_paging"></div>
+					</td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr><td colspan="9">没有信息.</td></tr>
+			</tbody>
+		</table>
+	</form>
+</div>

@@ -1,0 +1,2 @@
+sendemail -f 发送人email -t 接收人email -s smtp服务器 -u 邮件标题 -m 邮件内容  -xu 帐号 -xp 密码.
+通过以上命令实现邮件发送.

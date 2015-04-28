@@ -1,0 +1,69 @@
+<h1>
+	<span class="action-span"><a href="/doc/news">学习资料列表</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 编辑学习资料 </span>
+	<div style="clear:both"></div>
+</h1>
+<!-- start news form -->
+<div class="main-div">
+	<form name="form_edit" id="form_edit" action="edit" method="post" onsubmit="return false;">
+		<input type="hidden" name="news_seq" value="<?=$news['news_seq']?>" />
+		<table id="general-table" width="100%">
+			<tbody>				
+				<tr>
+					<td class="label"><label>标题：</label></td>
+					<td><input type="text" name="news_title" value="<?=$news['news_title']?>" /><font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="label"><label>展示分类：</label></td>
+					<td>
+						<?php if(!empty($category_map_newss)):?>
+							<?php foreach( $category_map_newss AS $category_map_news ):?>
+								<div class="js_category_div">
+									<input type="hidden" name="def_category_code" value="<?=$category_map_news['category_code']?>"/>
+									<input type="button" name="add_btn" onclick="addTag(this)" value="+" />
+									<input type="button" name="del_btn" onclick="removeTag(this)" value="-" />
+								</div>
+							<?php endforeach;?>
+						<?php else:?>
+							<div class="js_category_div">
+								<input type="hidden" name="def_category_code" value=""/>
+								<input type="button" name="add_btn" onclick="addTag(this)" value="+" />
+								<input type="button" name="del_btn" onclick="removeTag(this)" value="-" />
+							</div>
+						<?php endif;?>
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label>地区：</label></td>
+					<td>
+						<div class="js_area_div">
+							<input type="hidden" name="def_area_code" value="<?=$news['area_code']?>" />
+						</div>					
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label>来源：</label></td>
+					<td><input type="text" name="news_from" value="<?=$news['news_from']?>" style="width:600px;"/></td>
+				</tr>
+				<tr>
+					<td class="label"><label>内容：</label></td>
+					<td><textarea name="news_content" class="xheditor" style="width:600px; height:300px;"><?=$news['news_content']?></textarea></td>
+				</tr>
+				<tr>
+					<td class="label"><label>阅读次数：</label></td>
+					<td><?=$news['news_read_count']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后编辑时间：</label></td>
+					<td><?=$news['news_edit_time_vm']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后编辑Id：</label></td>
+					<td><?=$news['news_edit_id']?></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="button-div"><input value="确定" type="button" onclick="doEdit()" class="button"><input value="重置" type="reset" class="button"></div>
+	</form>
+</div>
+<script type="text/javascript" src="/layout/js/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>

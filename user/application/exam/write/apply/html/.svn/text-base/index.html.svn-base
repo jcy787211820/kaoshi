@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+	<div class="panel-heading center">申请发布题目权限</div>
+	<div class="panel-body">
+		
+		<?php IF( $write_exam_apply['write_exam_apply_seq'] > 0 ):?>
+			<form id="write_exam_apply_form" method="post" action="apply/update" target="write_exam_apply_frame" enctype="multipart/form-data" class="form-horizontal" role="form">
+			<div class="form-group">
+				<label for="write_exam_apply_status" class="col-sm-2 control-label">申请状态</label>
+				<div class="col-sm-10">
+					<?=$write_exam_apply['write_exam_apply_status_vw']?>
+				</div>
+			</div>
+		<?php ELSE:?>
+			<form id="write_exam_apply_form" method="post" action="apply/request" target="write_exam_apply_frame" enctype="multipart/form-data" class="form-horizontal" role="form">
+		<?php ENDIF;?>
+			<div class="form-group">
+				<label for="write_exam_apply_cert_type" class="col-sm-2 control-label">证件类型</label>
+				<div class="col-sm-3">
+					<?php IF( $write_exam_apply['write_exam_apply_cert_type'] == '身份证' ):?>
+						<select class="form-control" onclick="setCertType(this);">
+							<option value="身份证" selected="selected">身份证</option>
+							<option value="">其他</option>
+						</select>
+					<?php ELSE:?>
+						<select class="form-control" onclick="setCertType(this);">
+							<option value="身份证">身份证</option>
+							<option value="" selected="selected">其他</option>
+						</select>
+					<?php ENDIF;?>					
+				</div>
+				<div class="col-sm-5">
+					<input type="text" name="write_exam_apply_cert_type" value="<?=$write_exam_apply['write_exam_apply_cert_type']?>" class="form-control" id="write_exam_apply_cert_type"  placeholder="请填写证件类型!" />		
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="write_exam_apply_cert_id" class="col-sm-2 control-label">证件号码</label>
+				<div class="col-sm-5">
+					<input type="text" value="<?=$write_exam_apply['write_exam_apply_cert_id']?>" name="write_exam_apply_cert_id" class="form-control" id="write_exam_apply_cert_id" placeholder="请填写证件号码!" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="write_exam_apply_file" class="col-sm-2 control-label">证件上传</label>
+				<div class="col-sm-10">
+					<input type="hidden" name="MAX_FILE_SIZE" value="2096552" />
+					<input type="file" id="write_exam_apply_file" name="write_exam_apply_file" />
+					<?php IF( $write_exam_apply['write_exam_apply_seq'] > 0 ):?>
+						<a href="<?=$write_exam_apply['write_exam_apply_file_uri']?>" target="_blank">已上传文件,重新上传将覆盖已上传文件.</a>
+					<?php ENDIF;?>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="write_exam_apply_memo" class="col-sm-2 control-label">备注说明</label>
+				<div class="col-sm-10">	
+					<textarea name="write_exam_apply_memo" class="form-control" rows="3" placeholder="请填写备注说明!" id="write_exam_apply_memo"><?=$write_exam_apply['write_exam_apply_memo']?></textarea>
+				</div>
+			</div>
+			<?php IF(strlen( $write_exam_apply['write_exam_apply_admin_memo'] ) > 0 ):?>
+				<div class="form-group text-warning">
+					<div class="col-sm-12">管理员说明：<?=$write_exam_apply['write_exam_apply_admin_memo']?></div>
+				</div>
+			<?php ENDIF;?>
+			<?php IF( $write_exam_apply['write_exam_apply_status'] < \Manager\WriteExamApply::WRITE_EXAM_APPLY_STATUS_AGREE ):?>
+				<div class="form-group">
+					<div class="col-sm-12 text-center">
+						<?php IF( $write_exam_apply['write_exam_apply_seq'] > 0 ):?>
+							<input type="submit" value="修改内容" class="btn btn-default" />
+						<?php ELSE:?>
+							<input type="submit" value="提交申请" class="btn btn-default" />					
+						<?php ENDIF;?>
+					</div>
+				</div>
+			<?php ENDIF;?>
+		</form>
+	</div>
+</div>
+<div class="hidden">
+	<iframe name="write_exam_apply_frame"></iframe>
+</div>
+

@@ -1,0 +1,48 @@
+<h1>
+	<span class="action-span"><a href="/user/level">用户级别列表</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 编辑用户级别 </span>
+	<div style="clear:both"></div>
+</h1>
+<!-- start add new category form -->
+<div class="main-div">
+	<form name="form_edit" id="form_edit" action="edit" method="post" onsubmit="return false;">
+		<input type="hidden" name="user_level_seq" value="<?=$user_level['user_level_seq']?>" />
+		<table id="general-table" width="100%">
+			<tbody>
+				<tr>
+					<td class="label"><label>级别类型：</label></td>
+					<td>
+						<select name="user_level_type">
+							<?php foreach($user_level_types AS $user_level_type => $user_level_type_vm ):?>
+								<option value="<?=$user_level_type?>"><?=$user_level_type_vm?></option>
+							<?php endforeach;?>
+						</select>
+					</td>
+				</tr>				
+				<tr>
+					<td class="label"><label>级别名称：</label></td>
+					<td><input type="text" name="user_level_name" value="<?=$user_level['user_level_name']?>" /><font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="label"><label>经验值下限：</label></td>
+					<td><input type="text" name="user_level_min_empiric" value="<?=$user_level['user_level_min_empiric']?>" /><font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="label"><label>级别说明：</label></td>
+					<td><input type="text" name="user_level_description" value="<?=$user_level['user_level_description']?>" /><font color="red">*</font></td>
+				</tr>		
+				<tr>
+					<td class="label"><label>是否使用：</label></td>
+					<td>
+						<input type="radio" name="user_level_use_flag" value="T" id="user_level_use_flag_T"<?php if($user_level['user_level_use_flag'] == 'T'):?> checked="checked"<?php endif;?> />
+						<label for="user_level_use_flag_T">可以使用</label>
+						<input type="radio" name="user_level_use_flag" value="F" id="user_level_use_flag_F"<?php if($user_level['user_level_use_flag'] != 'T'):?> checked="checked"<?php endif;?> />
+						<label for="user_level_use_flag_F">暂时停用</label>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="button-div"><input value="确定" type="button" onclick="doEdit()" class="button"><input value="重置" type="reset" class="button"></div>
+	</form>
+</div>
+

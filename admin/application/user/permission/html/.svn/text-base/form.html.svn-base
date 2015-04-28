@@ -1,0 +1,55 @@
+<h1>
+	<span class="action-span"><a href="/user/permission">权限列表</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 编辑权限 </span>
+	<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+	<form name="form_edit" id="form_edit" action="edit" method="post" onsubmit="return false;">
+		<input type="hidden" name="permission_seq" value="<?=$permission['permission_seq']?>" />
+		<table id="general-table" width="100%">
+			<tbody>
+				<tr>
+					<td class="label"><label>权限名：</label></td>
+					<td><input type="text" name="permission_name" value="<?=$permission['permission_name']?>" /><font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="label"><label>权限指定URI：</label></td>
+					<td><input type="text" name="permission_action" value="<?=$permission['permission_action']?>" /><font color="red">*</font></td>
+				</tr>
+				<?php foreach( $permission_data_keys AS $base_type => $permission_data_key ):?>
+					<tr>
+						<td class="label">
+							<?php
+								if(	isset( $permission['permission_data_vm'][$base_type]['is_out_flag'] )
+									&&	$permission['permission_data_vm'][$base_type]['is_out_flag'] == 'T' 
+								):
+							?>
+								<input type="checkbox" name="permission_data[<?=$base_type?>][is_out_flag]" value="T" checked="checked" id="is_out_flag_<?=$base_type?>"/>
+							<?php else:?>
+								<input type="checkbox" name="permission_data[<?=$base_type?>][is_out_flag]" value="T" id="is_out_flag_<?=$base_type?>"/>
+							<?php endif;?>
+							<label for="is_out_flag_<?=$base_type?>">排除</label>
+							<label><a href="javascript:void(0)" onclick="changePermissonData('<?=$base_type?>')"><?=$permission_data_key?>：</a></label>
+						</td>
+						<td>
+							<div id="permission_data_<?=$base_type?>"></div>
+						</td>
+					</tr>
+				<?php endforeach;?>
+				<tr>
+					<td class="label"><label>最后修改时间：</label></td>
+					<td><?=$permission['permission_edit_time_vm']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改人：</label></td>
+					<td><?=$permission['permission_edit_id']?></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="button-div">
+			<input value="确定" type="button" onclick="doEdit()" class="button">
+			<input value="重置" type="reset" class="button">
+		</div>
+	</form>
+</div>
+

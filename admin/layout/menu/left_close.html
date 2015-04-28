@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="/layout/js/jquery.js"></script>
+<style>
+html,body{height:100%;}
+body {
+	margin: 0;
+	padding: 0;
+	background: #80BDCB;
+} 
+</style>
+</head>
+<body>
+	<table id="tbl" cellpadding="0" cellspacing="0" height="100%">
+		<tbody>
+			<tr>
+				<td><a href="javascript:toggleMenu();"><img src="/layout/images/icons/arrow_left.gif" id="img" border="0" height="30" width="10"></a></td>
+			</tr>
+		</tbody>
+	</table>
+<script>
+var toggleMenu = function(){
+	var cols	= jQuery('#frame-body',parent.document).attr('cols');
+	var img		= '';
+	if( cols == '0, 10, *' ){
+		cols	= '180, 10, *';
+		img		= '/layout/images/icons/arrow_left.gif';
+	}else{
+		cols = '0, 10, *';
+		img		= '/layout/images/icons/arrow_right.gif';
+	}
+	jQuery('#frame-body',parent.document).attr('cols',cols);
+	jQuery('#img').attr('src',img);
+};
+</script>
+</body>
+</html>

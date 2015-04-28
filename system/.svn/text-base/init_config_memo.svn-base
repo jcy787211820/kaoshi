@@ -1,0 +1,5 @@
+
+1、st_user 里面默认配置一个超级管理员
+2、st_permission 里面配置后台登陆权限
+3、st_permission 里面配置前台出题权限
+4、st_user_group 里面配置和权限对应的分组

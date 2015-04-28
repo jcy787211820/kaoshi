@@ -1,0 +1,28 @@
+<h1>
+	<span class="action-span"><a href="javascript:doSearchParent()">返回上级</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 分类列表 </span>
+	<div style="clear:both"></div>
+</h1>
+<div class="form-div">
+	<form action="/etc/category/listed" name="search_form" id="search_form" method="get" onsubmit="return false"  style="float:left;">
+		<input type="checkbox" name="category_study_data_flag" value="T" id="category_study_data_flag" onclick="jQuery('#search_form').submit()" />
+		<label for="category_study_data_flag">用于学习资料</label>
+		<input type="checkbox" name="category_news_flag" value="T" id="category_news_flag" onclick="jQuery('#search_form').submit()" />
+		<label for="category_news_flag">用于新闻资讯</label>
+		<input type="checkbox" name="category_exercise_flag" value="T" id="category_exercise_flag" onclick="jQuery('#search_form').submit()" />
+		<label for="category_exercise_flag">用于习题库</label>
+		<input type="hidden" name="category_parent_code" id="category_parent_code" value="" />
+	</form>
+	<form action="/etc/category/form" name="insert_form" id="insert_form" method="post" onsubmit="return false" target="edit_layer" style="float:right;">
+		<input type="hidden" name="action" value="add" />
+		<input type="hidden" name="category_parent_code" value="" />
+		<input type="button" class="button" onclick="doInsert()" value="添加子分类">
+	</form>
+	<br/>
+	<br/>
+</div>
+<div class="list-div" id="listDiv">
+	<table cellspacing="1" cellpadding="3" id="listTable">
+		<tbody></tbody>
+	</table>
+</div>

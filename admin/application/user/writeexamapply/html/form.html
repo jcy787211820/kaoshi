@@ -1,0 +1,84 @@
+<h1>
+	<span class="action-span"><a href="/user/writeExamApply">出题申请列表</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 管理出题申请 </span>
+	<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+	<form name="form_edit" id="form_edit" action="edit" method="post" onsubmit="return false;">
+		<input type="hidden" name="write_exam_apply_seq" value="<?=$write_exam_apply['write_exam_apply_seq']?>" />
+		<table id="general-table" width="100%">
+			<tbody>
+				<tr>
+					<td class="label"><label>状态：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_status_vw']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>用户ID：</label></td>
+					<td><?=$write_exam_apply['user_id']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>证件类型：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_cert_type']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>证件号码：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_cert_id']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>文件URI：</label></td>
+					<td><a href="<?=$write_exam_apply['write_exam_apply_file_uri']?>" target="_blank"><?=$write_exam_apply['write_exam_apply_file_uri']?></a></td>
+				</tr>
+				<tr>
+					<td class="label"><label>用户备注：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_memo']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>管理员备注：</label></td>
+					<td><textarea name="write_exam_apply_admin_memo" rows="3" cols="80"><?=$write_exam_apply['write_exam_apply_admin_memo']?></textarea></td>
+				</tr>
+				<tr>
+					<td class="label"><label>申请时间：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_insert_time_vw']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>申请ID：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_insert_id']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>申请IP：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_insert_ip']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改时间：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_edit_time_vw']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改ID：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_edit_id']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改IP：</label></td>
+					<td><?=$write_exam_apply['write_exam_apply_edit_ip']?></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="button-div">
+			<?php IF(
+					$write_exam_apply['write_exam_apply_status'] == \manager\WriteExamApply::WRITE_EXAM_APPLY_STATUS_REQUEST
+				||	$write_exam_apply['write_exam_apply_status'] == \manager\WriteExamApply::WRITE_EXAM_APPLY_STATUS_UPDATE
+			):?>
+				<input value="通过申请" type="button" onclick="doAgree()" class="button" />
+				<input value="拒绝申请" type="button" onclick="doRefuse()" class="button" />
+			<?php ENDIF;?>
+			<?php IF(
+					$write_exam_apply['write_exam_apply_status'] == \manager\WriteExamApply::WRITE_EXAM_APPLY_STATUS_REQUEST
+				||	$write_exam_apply['write_exam_apply_status'] == \manager\WriteExamApply::WRITE_EXAM_APPLY_STATUS_UPDATE
+				||	$write_exam_apply['write_exam_apply_status'] == \manager\WriteExamApply::WRITE_EXAM_APPLY_STATUS_REFUSE
+			):?>
+			<input value="关闭申请" type="button" onclick="doClose()" class="button" />
+			<?php ENDIF;?>
+			<input value="返回" type="button" onclick="history.back()" class="button" />
+		</div>
+	</form>
+</div>
+

@@ -1,0 +1,9 @@
+	<div class="page-header"><h4><center>会员信息中心</center></h4></div>
+	<div class="list-group">
+		<a href="#" class="list-group-item">个人信息</a>
+		<a href="#" class="list-group-item">积分明细</a>
+		<a href="#" class="list-group-item">余额明细</a>
+		<a href="/exam/write/apply" class="list-group-item" id="left_menu_apply">申请发布题目权限</a>
+		<a href="/exam/test" class="list-group-item" id="left_menu_my_test">我发布的题目</a>
+		<a href="#" class="list-group-item">我回答的题目</a>
+	</div>

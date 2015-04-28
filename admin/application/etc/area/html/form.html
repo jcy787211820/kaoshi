@@ -1,0 +1,41 @@
+<h1>
+	<span class="action-span"><a href="/etc/area">地区列表</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 编辑地区 </span>
+	<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+	<form name="form_edit" id="form_edit" action="edit" method="post" onsubmit="return false;">
+		<input type="hidden" name="area_seq" value="<?=$area['area_seq']?>" />
+		<input type="hidden" name="area_parent_code" value="<?=$area_parent_code?>" />
+		<table id="general-table" width="100%">
+			<tbody>
+				<tr>
+					<td class="label"><label>地区编号：</label></td>
+					<td><?=$area['area_code']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>地区名：</label></td>
+					<td><input type="text" name="area_name" value="<?=$area['area_name']?>" /><font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="label"><label>政府编号：</label></td>
+					<td><input type="text" name="area_gov_code" value="<?=$area['area_gov_code']?>" /></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改时间：</label></td>
+					<td><?=$area['area_edit_time_vm']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改人：</label></td>
+					<td><?=$area['area_edit_id']?></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="button-div">
+			<input value="确定" type="button" onclick="doEdit()" class="button">
+			<input value="重置" type="reset" class="button">
+			<input value="取消" type="button" onclick="doClose()" class="button">
+		</div>
+	</form>
+</div>
+

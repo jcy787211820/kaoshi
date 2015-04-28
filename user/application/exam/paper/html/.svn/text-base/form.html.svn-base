@@ -1,0 +1,166 @@
+<div class="panel panel-default">
+	<div class="panel-heading center">发布试卷</div>
+	<div class="panel-body">
+		<form
+			id="form_edit_paper"
+			name="form_edit_paper"
+			method="post"
+			action="/exam/paper/<?php IF( $test_paper['test_paper_seq'] > 0 ):?>update/<?=$encode_seq?><?php ELSE:?>insert<?php ENDIF;?>"
+			class="form-horizontal"
+			role="form"
+			onsubmit="return false;"
+		>
+			<div><h3>试卷基本信息</h3></div>
+			<div class="form-group">
+				<label for="category_code" class="col-sm-3 control-label">
+					<button type="button" class="btn btn-primary" id="add_category_container_btn" onclick="addCategoryTag()">增加</button>
+					展示分类[*必填]
+				</label>
+				<div class="col-sm-9 pull-right js-category-container">
+					<!-- select bar from js -->
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="test_paper_name" class="col-sm-3 control-label">试卷名[*必填]</label>
+				<div class="col-sm-9">
+					<?php IF($test_paper['test_paper_check_flag'] == 'T'):?>
+						<span class="form-control"><?=$test_paper['test_paper_name']?></span>
+						<span class="help-block">已通过审核，正式发布的试卷，不允许再修改。</span>
+					<?php ELSE:?>
+						<input type="text" class="form-control" name="test_paper_name" id="test_paper_name" placeholder="填写试卷名." maxlength="40" />
+					<?php ENDIF;?>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="test_paper_description" class="col-sm-3 control-label">试卷描述[选填]</label>
+				<div class="col-sm-9">
+					<?php IF($test_paper['test_paper_check_flag'] == 'T'):?>
+						<span class="form-control"><?=$test_paper['test_paper_description']?></span>
+						<span class="help-block">已通过审核，正式发布的试卷，不允许再修改。</span>
+					<?php ELSE:?>
+						<textarea class="form-control" name="test_paper_description" id="test_paper_description" placeholder="填写试卷名." maxlength="200"><?=$test_paper['test_paper_description']?></textarea>
+					<?php ENDIF;?>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="test_paper_timeout" class="col-sm-3 control-label">时间限制[选填]</label>
+				<?php IF($test_paper['test_paper_check_flag'] == 'T'):?>
+					<div class="col-sm-2">
+						<span class="form-control">
+							<?=$test_paper['test_paper_timeout']?>
+						</span>
+					</div>
+					<div class="col-sm-7">
+						<span class="help-block">已通过审核，正式发布的题目，不允许再修改。</span>
+					</div>
+				<?php ELSE:?>
+					<div class="col-sm-2">
+						<input type="number" name="test_paper_timeout" value="<?=$test_paper['test_paper_timeout']?>" class="form-control" />
+					</div>
+					<div class="col-sm-7">
+						<span class="help-block">以分为单位。 0:表示没有时间限制。</span>
+					</div>
+				<?php ENDIF;?>
+			</div>
+			<div class="form-group">
+				<label for="test_paper_price" class="col-sm-3 control-label">试卷价格[选填]</label>
+				<div class="col-sm-2">
+					<input type="number" name="test_paper_price" value="<?=$test_paper['test_paper_price']?>" class="form-control"/>
+				</div>
+				<div class="col-sm-2">
+					<span class="help-block">0.00:表示免费。</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="test_paper_answer_price" class="col-sm-3 control-label">查看答案价格[选填]</label>
+				<div class="col-sm-2">
+					<input type="number" name="test_paper_answer_price" value="<?=$test_paper['test_paper_answer_price']?>" class="form-control"/>
+				</div>
+				<div class="col-sm-2">
+					<span class="help-block">0.00:表示免费。</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="test_paper_analysis_price" class="col-sm-3 control-label">查看习题解析价格[选填]</label>
+				<div class="col-sm-2">
+					<input type="number" name="test_paper_analysis_price" value="<?=$test_paper['test_paper_analysis_price']?>" class="form-control"/>
+				</div>
+				<div class="col-sm-2">
+					<span class="help-block">0.00:表示免费。</span>
+				</div>
+			</div>
+			<div class="form-group <?php IF( $test_paper['test_paper_seq'] == 0 ):?>hidden<?php ENDIF;?>" id="test_paper_insert_time_view_div">
+				<label for="" class="col-sm-3 control-label">试题创建时间</label>
+				<div class="col-sm-9">
+					<span class="help-block" id="test_paper_insert_time_view_tag"><?=date('Y-m-d H:i:s', $test_paper['test_paper_insert_time'])?></span>
+				</div>
+			</div>
+			<div class="form-group <?php IF( $test_paper['test_paper_seq'] == 0 ):?>hidden<?php ENDIF;?>" id="test_paper_edit_time_view_div">
+				<label for="" class="col-sm-3 control-label">最后修改时间</label>
+				<div class="col-sm-9">
+					<span class="help-block" id="test_paper_edit_time_view_tag"><?=date('Y-m-d H:i:s', $test_paper['test_paper_edit_time'])?></span>
+				</div>
+			</div>		
+			<div class="form-group">
+				<div class="col-sm-12 text-center">
+					<button
+						type="button"
+						class="btn btn-default"
+						onclick="doSubmit('#form_edit_paper')"
+					>
+						提交
+					</button>
+				</div>
+			</div>
+		</form>
+		
+		<div class="hidden"><iframe name="frame_edit_file"></iframe></div>
+		<form
+			id="form_edit_file"
+			name="form_edit_file"
+			method="post"
+			action="/exam/paper/file/<?=$encode_seq?>"
+			class="form-horizontal"
+			role="form"
+			onsubmit="return false;"
+			target="frame_edit_file"
+			enctype="multipart/form-data"
+		>
+			<div><h3>试卷附件信息</h3></div>
+			<div class="form-group">
+				<label for="file_title" class="col-sm-3 control-label">文件标题[选填]</label>
+				<div class="col-sm-9">
+					<input type="text" name="file_title" value="" class="form-control"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="file_description" class="col-sm-3 control-label">文件描述[选填]</label>
+				<div class="col-sm-9">
+					<input type="text" name="file_description" value="" class="form-control"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="file_uri" class="col-sm-3 control-label">选择本地文件[选填]</label>
+				<div class="col-sm-9">
+					<input type="file" name="test_paper_file" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12 text-center">
+					<button
+						type="button"
+						class="btn btn-default"
+						onclick="doSubmit( '#form_edit_file', 1 )"
+					>
+						提交
+					</button>
+				</div>
+			</div>
+		</form>
+		<form class="form-horizontal" role="form">
+			<div><h3>试卷考题</h3></div>
+			<div class="form-group">
+			</div>
+		</form>
+	</div>
+</div>

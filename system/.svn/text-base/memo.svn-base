@@ -1,0 +1,14 @@
+1、用户信息，如QQ，电话，用户组，等信息。以后可以添加多个
+2、form 表单提交的时候需要验证输入的字符是否合法。
+	a)最后一个字符不能是"\";
+	b)两端不能有空格;
+	c)不能输入html标签。不能输入修改样式的字符.(可以js或者css篡改网站内容的信息);
+	
+	CREATE TABLE `st_permission_data` (
+  `permission_data_seq` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `permission_type` tinyint(1) NOT NULL DEFAULT '0',
+  `permission_seq` int(10) unsigned NOT NULL DEFAULT '0',
+  `permission_data_value` varchar(200) NOT NULL DEFAULT '',
+  `permission_data_out_flg` enum('T','F') NOT NULL DEFAULT 'F' COMMENT '是否排除',
+  PRIMARY KEY (`permission_data_seq`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限取值';

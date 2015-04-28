@@ -1,0 +1,133 @@
+.layout-header{
+	padding: 0 20%;
+	min-width: 530px;
+}
+.layout-header .site-title{
+	color:#FFFFFF;
+	font-size:20px;
+	line-height:3em;
+	float:left;
+}
+.layout-header .site-sub-title{
+	float:left;
+	line-height:6em;
+	color:#83B449;
+}
+.layout-header .join-query{
+	float:right;
+	color:#BBBBBB;
+	font-size:14px;
+	line-height:4.5em;
+}
+.layout-content{
+	padding: 50px 20%;
+	clear:both;
+	min-width: 530px;
+}
+.layout-content .message-info{
+	float: left;
+	width: 65%;
+	height:400px;
+	overflow-y:hidden;
+}
+.layout-content .message-info h1{
+	font-size:32px;
+	font-weight:normal;
+	letter-spacing:0.5em;
+}
+.layout-content .message-info p{
+	font-size:14px;
+	line-height:1.75em;
+}
+.layout-content .join-form{
+	float: right;
+	width: 28%;
+	background:#FFFFFF;
+	padding:2%;
+}
+.layout-content .join-form .error-message{
+	color:#FF0000;
+	line-height:2em;
+}
+.layout-content .join-form h1{
+	font-size:20px;
+	font-weight:normal;
+	letter-spacing:0.5em;
+	color:#7DAC46;
+}
+.layout-content .join-form h1 span{
+	font-size:12px;
+	letter-spacing:0.1em;
+	color:#999999;
+}
+
+.layout-content .join-form label{
+	position:relative;
+	font-size:14px;
+	color:#AAAAAA;
+	top:30px;
+	left:10px;
+	cursor:text;
+}
+.layout-content .join-form .input{
+	border: 1px solid #DDDDDD;
+	border-radius: 3px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) inset;
+	outline: medium none;
+	padding: 10px 0.5em;
+	transition: all 0.1s ease 0s;
+	width:90%;
+}
+
+.layout-content .join-form .input#captcha{
+	display:block;
+	width:100px;
+	text-transform:uppercase;
+}
+
+.layout-content .join-form .captcha_img{
+	position:relative;
+	left:120px;
+	top:-35px;
+}
+
+.layout-content .join-form .captcha_img img{
+	vertical-align:bottom;
+}
+
+
+
+.layout-content .join-form .button{
+	border-radius: 10px;
+	width: 100%;
+	cursor:pointer;
+}
+
+.layout-footer{
+	width:60%;
+	margin:50px auto;
+	padding-top:20px;
+	text-align:center;
+	clear:both;
+	border-top:1px solid #DDDDDD;
+	color:#AAAAAA;
+}
+
+
+.button{
+	background-color: #83B449;
+    border: medium none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    display: inline-block;
+    outline: medium none;
+    padding: 0.375em 0.75em;
+    text-align: center;
+    line-height: 1em;
+    text-decoration: none;
+    font-size:14px;
+    transition: background-color 0.1s ease 0s;
+}
+.button:hover{
+	background:#76A242
+}

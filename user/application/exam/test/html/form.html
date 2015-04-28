@@ -1,0 +1,150 @@
+<div class="panel panel-default">
+	<div class="panel-heading center">发布题目</div>
+	<div class="panel-body">
+		<form
+			id="form_edit"
+			name="form_edit"
+			method="post"
+			action="/exam/test/<?php IF( $test['test_seq'] > 0 ):?>update/<?=$encode_seq?><?php ELSE:?>insert<?php ENDIF;?>"
+			class="form-horizontal"
+			role="form"
+			onsubmit="return false;"
+		>
+			<div class="form-group">
+				<label for="category_code" class="col-sm-3 control-label">
+					<button type="button" class="btn btn-primary" id="add_category_container_btn" onclick="addCategoryTag()">增加</button>
+					展示分类[*必须]
+				</label>
+				<div class="col-sm-9 pull-right js-category-container">
+					<!-- select bar from js -->
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="test_type" class="col-sm-3 control-label">题目类型[*必须]</label>				
+				<?php IF($test['test_check_flag'] == 'T'):?>
+					<div class="col-sm-3">
+						<span class="form-control">
+							<?=$test_types[$test['test_type']]?>
+						</span>
+					</div>
+					<div class="col-sm-6">
+						<span class="help-block">已通过审核，正式发布的题目，不允许再修改。</span>
+					</div>
+				<?php ELSE:?>
+					<div class="col-sm-3">
+						<select class="form-control" name="test_type" id="test_type" onchange="changeTestType()">
+							<?PHP FOREACH($test_types AS $test_type_key => $test_type_value): ?>
+								<?php IF( $test['test_type'] == $test_type_key):?>
+									<option value="<?=$test_type_key?>" selected="selected">
+								<?php ELSE:?>
+									<option value="<?=$test_type_key?>">
+								<?php ENDIF;?>
+									<?=$test_type_value?>
+								</option>
+							<?PHP ENDFOREACH;?>
+						</select>
+					</div>
+				<?php ENDIF;?>
+			</div>
+			<div class="form-group">
+				<label for="test_question" class="col-sm-3 control-label">问题[*必须]</label>
+				<div class="col-sm-9">
+					<?php IF($test['test_check_flag'] == 'T'):?>
+						<span class="form-control"><?=$test['test_question']?></span>
+						<span class="help-block">已通过审核，正式发布的题目，不允许再修改。</span>
+					<?php ELSE:?>
+						<textarea class="form-control" name="test_question" id="test_question" placeholder="填写问题."><?=$test['test_question']?></textarea>
+					<?php ENDIF;?>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">
+					<?php IF($test['test_check_flag'] == 'F'):?>
+						<button type="button" class="btn btn-primary" id="add_answer_option_btn" onclick="addAnswerOption()">增加选项</button>
+					<?php ENDIF;?>
+					答案[*必须]
+				</label>
+				<div class="col-sm-9" id="test_answer_container">
+					<!-- html option from js -->
+				</div>
+ 			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">时间限制[可选]</label>
+				<?php IF($test['test_check_flag'] == 'T'):?>
+					<div class="col-sm-2">
+						<span class="form-control">
+							<?=$test['test_timeout']?>
+						</span>
+					</div>
+					<div class="col-sm-7">
+						<span class="help-block">已通过审核，正式发布的题目，不允许再修改。</span>
+					</div>
+				<?php ELSE:?>
+					<div class="col-sm-2">
+						<input type="number" name="test_timeout" value="<?=$test['test_timeout']?>" class="form-control" />
+					</div>
+					<div class="col-sm-7">
+						<span class="help-block">以秒为单位。 0:表示没有时间限制。</span>
+					</div>
+				<?php ENDIF;?>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">习题解析[可选]</label>
+				<div class="col-sm-9">
+					<textarea class="form-control" name="test_analysis" placeholder="填写习题解析."><?=$test['test_analysis']?></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">解答题目价格[可选]</label>
+				<div class="col-sm-2">
+					<input type="number" name="test_price" value="<?=$test['test_price']?>" class="form-control"/>
+				</div>
+				<div class="col-sm-2">
+					<span class="help-block">0.00:表示免费。</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">查看答案价格[可选]</label>
+				<div class="col-sm-2">
+					<input type="number" name="test_answer_price" value="<?=$test['test_answer_price']?>" class="form-control"/>
+				</div>
+				<div class="col-sm-2">
+					<span class="help-block">0.00:表示免费。</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">查看习题解析价格[可选]</label>
+				<div class="col-sm-2">
+					<input type="number" name="test_analysis_price" value="<?=$test['test_analysis_price']?>" class="form-control"/>
+				</div>
+				<div class="col-sm-2">
+					<span class="help-block">0.00:表示免费。</span>
+				</div>
+			</div>
+			<div class="form-group <?php IF( $test['test_seq'] == 0 ):?>hidden<?php ENDIF;?>" id="test_insert_time_view_div">
+				<label for="" class="col-sm-3 control-label">试题创建时间</label>
+				<div class="col-sm-9">
+					<span class="help-block" id="test_insert_time_view_tag"><?=date('Y-m-d H:i:s', $test['test_insert_time'])?></span>
+				</div>
+			</div>
+			<div class="form-group <?php IF( $test['test_seq'] == 0 ):?>hidden<?php ENDIF;?>" id="test_edit_time_view_div">
+				<label for="" class="col-sm-3 control-label">最后修改时间</label>
+				<div class="col-sm-9">
+					<span class="help-block" id="test_edit_time_view_tag"><?=date('Y-m-d H:i:s', $test['test_edit_time'])?></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12 text-center">
+					<button
+						type="button"
+						class="btn btn-default"
+						onclick="doSubmit('<?php IF( $test['test_seq'] > 0 ):?>update<?php ELSE:?>insert<?php ENDIF;?>')"
+						id="submit_button"
+					>
+						提交
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,77 @@
+<h1>
+	<span class="action-span"><a href="/etc/category">分类列表</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 编辑分类 </span>
+	<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+	<form name="form_edit" id="form_edit" action="edit" method="post" onsubmit="return false;">
+		<input type="hidden" name="category_seq" value="<?=$category['category_seq']?>" />
+		<input type="hidden" name="category_parent_code" value="<?=$category_parent_code?>" />
+		<table id="general-table" width="100%">
+			<tbody>
+				<tr>
+					<td class="label"><label>分类编号：</label></td>
+					<td><?=$category['category_code']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>分类名：</label></td>
+					<td><input type="text" name="category_name" value="<?=$category['category_name']?>" /><font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="label"><label>分类说明：</label></td>
+					<td><input type="text" name="category_description" value="<?=$category['category_description']?>" /></td>
+				</tr>
+				<tr>
+					<td class="label"><label>是否使用：</label></td>
+					<td>
+						<input type="radio" name="category_use_flag" value="T" id="category_use_flag_T"<?php if($category['category_use_flag'] == 'T'):?> checked="checked"<?php endif;?> />
+						<label for="category_use_flag_T">可以使用</label>
+						<input type="radio" name="category_use_flag" value="F" id="category_use_flag_F"<?php if($category['category_use_flag'] != 'T'):?> checked="checked"<?php endif;?> />
+						<label for="category_use_flag_F">暂时停用</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label>是否用于学习资料：</label></td>
+					<td>
+						<input type="radio" name="category_study_data_flag" value="T" id="category_study_data_flag_T"<?php if($category['category_study_data_flag'] == 'T'):?> checked="checked"<?php endif;?> />
+						<label for="category_study_data_flag_T">可以使用</label>
+						<input type="radio" name="category_study_data_flag" value="F" id="category_study_data_flag_F"<?php if($category['category_study_data_flag'] != 'T'):?> checked="checked"<?php endif;?> />
+						<label for="category_study_data_flag_F">暂时停用</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label>是否用于新闻资讯：</label></td>
+					<td>
+						<input type="radio" name="category_news_flag" value="T" id="category_news_flag_T"<?php if($category['category_news_flag'] == 'T'):?> checked="checked"<?php endif;?> />
+						<label for="category_news_flag_T">可以使用</label>
+						<input type="radio" name="category_news_flag" value="F" id="category_news_flag_F"<?php if($category['category_news_flag'] != 'T'):?> checked="checked"<?php endif;?> />
+						<label for="category_news_flag_F">暂时停用</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label>是否用于习题库：</label></td>
+					<td>
+						<input type="radio" name="category_exercise_flag" value="T" id="category_exercise_flag_T"<?php if($category['category_exercise_flag'] == 'T'):?> checked="checked"<?php endif;?> />
+						<label for="category_exercise_flag_T">可以使用</label>
+						<input type="radio" name="category_exercise_flag" value="F" id="category_exercise_flag_F"<?php if($category['category_exercise_flag'] != 'T'):?> checked="checked"<?php endif;?> />
+						<label for="category_exercise_flag_F">暂时停用</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改时间：</label></td>
+					<td><?=$category['category_edit_time_vm']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>最后修改人：</label></td>
+					<td><?=$category['category_edit_id']?></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="button-div">
+			<input value="确定" type="button" onclick="doEdit()" class="button">
+			<input value="重置" type="reset" class="button">
+			<input value="取消" type="button" onclick="doClose()" class="button">
+		</div>
+	</form>
+</div>
+

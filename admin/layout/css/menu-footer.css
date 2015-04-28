@@ -1,0 +1,13 @@
+html{
+	background		: #353535;
+}
+body, p, ul, li{
+	margin		: 0;
+	padding		: 0;
+	color		: #555555;
+	font-size	: 12px;
+}
+p{
+	background:#FFFFFF;
+	text-align:center;
+}

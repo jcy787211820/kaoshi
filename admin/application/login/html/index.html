@@ -1,0 +1,42 @@
+<form onsubmit="return false" name="loginForm" id="loginForm" action="/login/action" method="post">
+	<table cellspacing="0" cellpadding="0" align="center" style="margin-top: 100px">
+		<tbody>
+			<tr>
+				<td>
+					<table>
+						<tbody>
+							<tr>
+								<td><label for="user_name" class="white">管理员姓名：</label></td>
+								<td><input type="text" name="user_id" id="user_id" value="<?=$user_id?>" /></td>
+							</tr>
+							<tr>
+								<td><label for="user_password" class="white">管理员密码：</label></td>
+								<td><input type="password" name="user_password" id="user_password" value="<?=$user_password?>" /></td>
+							</tr>
+							 <tr>
+							 	<td><label for="captcha" class="white">验证码：</label></td>
+							 	<td><input type="text" name="captcha" class="capital" id="captcha"></td>
+							 </tr>
+							 <tr>
+							 	<td align="right" colspan="2">
+							 		<img id="js_captcha_img" width="145" height="20" border="1" onclick="changeCaptcha(this)" style="cursor: pointer;" src="/login/captcha" alt="看不清？换一个。" title="看不清？换一个。" />
+							 	</td>
+							 </tr>
+							 <tr>
+							 	<td colspan="2">
+							 		<input type="checkbox" id="remember" name="remember" value="T"<?php if($remember == 'T'):?> checked="checked"<?php endif;?>/>
+							 		<label for="remember" class="white">请保存我这次的登录信息。</label>
+							 	</td>
+							 </tr>
+							 <tr>
+							 	<td colspan="2" align="center">
+							 		<input type="button" class="button" value="进入管理中心" onclick="doLogin()" />
+							 	</td>
+							 </tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>

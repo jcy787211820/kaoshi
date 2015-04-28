@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="/layout/css/default.css" rel="stylesheet" type="text/css" />
+	<link href="/layout/css/menu-left.css" rel="stylesheet" type="text/css" />
+	<script src="/layout/js/jquery.js"></script>
+</head>
+<body>
+
+<div id="tabbar-div">
+	<p>
+		<span class="explode" id="menu-collapse-all" name="menu-collapse-all" onclick="collapse(this)"></span>
+		<span class="tab-front" id="menu-tab">菜单</span>
+	</p>
+</div>
+<div id="main-div">
+	<div id="menu-list">
+		<ul id="menu-ul">
+			<li class="explode" name="menu" onclick="collapse(this)">
+				<span>组别管理</span>
+			</li>
+			<ul>
+				<li class="menu-item"><a href="/user/group" target="main-frame">组别列表</a></li>
+			</ul>
+			<li class="explode" name="menu" onclick="collapse(this)">
+				<span>等级管理</span>
+			</li>
+			<ul>
+				<li class="menu-item"><a href="/user/level" target="main-frame">等级列表</a></li>
+				<li class="menu-item"><a href="/user/level/form" target="main-frame">新建等级</a></li>
+			</ul>
+			<li class="explode" name="menu" onclick="collapse(this)">
+				<span>用户管理</span>
+			</li>
+			<ul>
+				<li class="menu-item"><a href="/user/info" target="main-frame">用户列表</a></li>
+				<li class="menu-item"><a href="/user/info/form" target="main-frame">新建用户</a></li>
+			</ul>
+			<li class="explode" name="menu" onclick="collapse(this)">
+				<span>权限设置</span>
+			</li>
+			<ul>
+				<li class="menu-item"><a href="/user/permission" target="main-frame">权限列表</a></li>
+				<li class="menu-item"><a href="/user/permission/form" target="main-frame">新建权限</a></li>
+				<li class="menu-item"><a href="/user/writeExamApply" target="main-frame">出题申请</a></li>
+			</ul>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="/layout/js/menu-left.js"></script>
+</body>
+</html>

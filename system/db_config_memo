@@ -1,0 +1,2 @@
+1、事物处理安全隔离级别需要至少设置为 REPEATABLE READ;(mysql 默认)
+	检查方法 SELECT @@global.tx_isolation;

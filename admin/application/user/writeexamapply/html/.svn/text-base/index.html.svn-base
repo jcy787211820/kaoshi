@@ -1,0 +1,52 @@
+<h1>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 出题申请列表 </span>
+	<div style="clear:both"></div>
+</h1>
+<div class="form-div">
+	<form action="/user/writeExamApply/listed" name="search_form" id="search_form" method="get" onsubmit="return false">
+		<img src="/layout/images/icons/icon_search.gif" alt="SEARCH" border="0" height="22" width="26">
+		<input type="hidden" name="page" value="1" />
+		<input type="hidden" name="rows" value="15" />
+		<input type="hidden" name="size" value="10" />
+		<input type="hidden" name="total" value="0" />
+		<label for="user_id">用户ID:</label>
+		<input type="text" name="user_id" id="user_id" />
+		<select name="write_exam_apply_cert_type" id="write_exam_apply_cert_type">
+			<option value="">证件类型</option>
+			<option value="身份证">身份证</option>
+			<option value="etc">其他</option>
+		</select>
+		<label for="write_exam_apply_cert_id">证件号码:</label>
+		<input type="text" name="write_exam_apply_cert_id" id="write_exam_apply_cert_id" />
+		<input type="submit" value="查询" />
+	</form>
+</div>
+
+<div class="list-div" id="listDiv">
+	<form action="/user/writeExamApply/" name="edit_form" id="edit_form" method="post" onsubmit="return false;">
+		<table cellpadding="3" cellspacing="1">
+			<thead>
+				<tr>
+					<th width="20"><input type="checkbox" name="checkall" />序号</th>
+					<th width="130">用户ID</th>
+					<th width="100">证件类型</th>
+					<th width="130">证件号码</th>
+					<th>状态</th>
+					<th width="150">编辑时间</th>
+					<th width="130">编辑ID</th>
+					<th width="30">操作</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="8" align="right">
+						<div class="js_paging"></div>
+					</td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr><td colspan="8">没有信息.</td></tr>
+			</tbody>
+		</table>
+	</form>
+</div>

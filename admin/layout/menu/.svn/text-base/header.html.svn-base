@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="/layout/css/default.css" rel="stylesheet" type="text/css" />
+	<link href="/layout/css/menu-header.css" rel="stylesheet" type="text/css" />
+	<script src="/layout/js/jquery.js"></script>
+	<script src="/layout/js/default.js"></script>
+</head>
+<body>
+	<div id="header-div">
+	  <div id="logo-div">后台管理系统</div>
+	  <div id="license-div"></div>
+	  <div id="submenu-div">
+	    <ul>
+	      <li><a href="index.php?act=about_us" target="main-frame">关于 ECSHOP</a></li>
+	      <li><a href="javascript:web_address();">帮助</a></li>
+	      <li><a href="../" target="_blank">查看网店</a></li>
+	      <li><a href="message.php?act=list" target="main-frame">管理员留言</a></li>
+	      <li><a href="privilege.php?act=modif" target="main-frame">个人设置</a></li>
+	      <li><a href="javascript:window.top.frames['main-frame'].document.location.reload();window.top.frames['header-frame'].document.location.reload()">刷新</a></li>
+	      <li><a href="#" onclick="ShowToDoList()">记事本</a></li>
+	      <li style="border-left:none;"><a href="index.php?act=first" target="main-frame">开店向导</a></li>
+	    </ul>
+	    <div id="send_info" style="padding: 5px 10px 0 0; clear:right;text-align: right; color: #FF9900;width:40%;float: right;">
+			<a href="index.php?act=clear_cache" target="main-frame" class="fix-submenu">清除缓存</a>
+	      	<a href="#" onclick="doLogout()" class="fix-submenu">退出</a>
+	    </div>
+	  </div>
+	</div>
+	<div id="menu-div">
+	  <ul>
+	    <li class="fix-spacel">&nbsp;</li>
+	    <li><a href="/layout/menu/left_user.html" target="menu-frame">用户管理</a></li>
+	    <li><a href="/layout/menu/left_doc.html" target="menu-frame">文档管理</a></li>
+	    <li><a href="/layout/menu/left_etc.html" target="menu-frame">其他管理</a></li>
+	  </ul>
+	  <br class="clear">
+	</div>
+	<script src="/layout/js/header.js"></script>
+</body>
+</html>

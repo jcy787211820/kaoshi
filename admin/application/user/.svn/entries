@@ -1,0 +1,43 @@
+10
+
+dir
+167
+svn://192.168.0.100/kaoshi/admin/application/user
+svn://192.168.0.100/kaoshi
+
+
+
+2014-04-04T23:11:52.878242Z
+166
+licy
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+a68a99ef-6aea-448f-90f3-0c8535482901
+
+group
+dir
+
+info
+dir
+
+level
+dir
+
+permission
+dir
+
+writeexamapply
+dir
+

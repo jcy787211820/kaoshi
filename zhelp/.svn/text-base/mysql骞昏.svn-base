@@ -1,0 +1,12 @@
+ MySQL 的幻读
+@import url(http://www.blogjava.net/CuteSoft_Client/CuteEditor/Load.ashx?type=style&file=SyntaxHighlighter.css);@import url(/css/cuteeditor.css);
+1. 使用默认隔离级别 repeatable read
+2. 开始，使用 select @@tx_isolation 确认当前 session 的隔离级别，并且创建个表 create table tt (id int, name varchar(300)) engine=innodb
+3. 启动 transaction 1(t1)，使用 start transaction
+4. 启动 transaction 2(t2), 再开个 mysql，使用 start transaction
+5. 在 t2 执行 select * from tt
+6. 在 t1 执行 insert into tt  values(1, 'haha')
+7. 在 t2 再次执行 select * from tt，是看不到数据的。
+8. 在 t2 执行 update tt set name='hehe' where id=1
+9. 在 t2 再再次执行 select * from tt，居然看到 id=1 那条 hehe 了！
+10. 我们幻读了......

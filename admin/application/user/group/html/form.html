@@ -1,0 +1,56 @@
+<h1>
+	<span class="action-span"><a href="/user/group">用户组列表</a></span>
+	<span class="action-span1"><a href="#">管理中心</a></span><span id="search_id" class="action-span1"> - 编辑用户组 </span>
+	<div style="clear:both"></div>
+</h1>
+
+<div class="main-div">
+	<form name="form_edit" id="form_edit" action="edit" method="post" onsubmit="return false;">
+		<input type="hidden" name="user_group_seq" value="<?=$user_group['user_group_seq']?>" />
+		<input type="hidden" name="user_group_parent_seq" value="<?=$user_group['user_group_parent_seq']?>" />
+		<input type="hidden" name="user_group_depth" value="<?=$user_group['user_group_depth']?>" />
+		
+		<input type="hidden" name="user_group_seq" value="<?=$user_group['user_group_seq']?>" />
+		<input type="hidden" name="user_group_parent_code" value="<?=$user_group_parent_code?>" />
+		<table id="general-table" width="100%">
+			<tbody>
+				<tr>
+					<td class="label"><label>用户组编号：</label></td>
+					<td><?=$user_group['user_group_code']?></td>
+				</tr>
+				<tr>
+					<td class="label"><label>用户组名称：</label></td>
+					<td><input type="text" name="user_group_name" value="<?=$user_group['user_group_name']?>" maxlength="45" /><font color="red">*</font></td>
+				</tr>				
+				<tr>
+					<td class="label"><label>说明：</label></td>
+					<td>
+						<input type="text" name="user_group_description" value="<?=$user_group['user_group_description']?>" size="50" maxlength="200" />
+						<font color="red">*</font>
+					</td>
+				</tr>				
+				<tr>
+					<td class="label"><label>是否使用：</label></td>
+					<td>
+						<input type="radio" name="user_group_use_flag" value="T" id="user_group_use_flag_T"<?php if($user_group['user_group_use_flag'] == 'T'):?> checked="checked"<?php endif;?> />
+						<label for="user_group_use_flag_T">可以使用</label>
+						<input type="radio" name="user_group_use_flag" value="F" id="user_group_use_flag_F"<?php if($user_group['user_group_use_flag'] != 'T'):?> checked="checked"<?php endif;?> />
+						<label for="user_group_use_flag_F">暂时停用</label>
+					</td>
+				</tr>
+<?php if($user_group['user_group_seq'] > 0):?>
+				<tr>
+					<td class="label"><label>最后修改：</label></td>
+					<td><?=$user_group['user_group_edit_time_vm']?>[<?=$user_group['user_group_edit_id']?>]</td>
+				</tr>
+<?php endif;?>
+			</tbody>
+		</table>
+		<div class="button-div">
+			<input value="确定" type="button" class="button" onclick="doEdit()">
+			<input class="button" value="重置" type="reset">
+			<input value="取消" type="button" onclick="doClose()" class="button">
+		</div>
+	</form>
+</div>
+
